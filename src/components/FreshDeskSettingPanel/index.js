@@ -39,15 +39,15 @@ export default class FreshDeskSettingPanel extends Component {
     return (
       <Panel className={styles.content}>
         <InputField label="FreshDesk Base Uri">
-          <TextInput value={this.state.baseUri} onChange={this._updateBaseUri} />
+          <TextInput value={this.state.baseUri} onChange={this._updateBaseUri} placeholder="https://{companyname}.freshdesk.com"/>
         </InputField>
-        <InputField label="FreshDesk API key">
-          <TextInput value={this.state.apiKey} onChange={this._updateApiKey} />
+        <InputField label="FreshDesk API Key" labelHint="This can be found under your settings at freshdesk.com">
+          <TextInput value={this.state.apiKey} onChange={this._updateApiKey} placeholder="abcd1234..."/>
         </InputField>
         <SaveButton
           currentLocale="en-US"
           onClick={this._onSave}
-          disabled={!this.state.apiKey || this.state.apiKey.length === 0}
+          disabled={!this.state.apiKey || this.state.apiKey.length === 0 || !this.state.baseUri || this.state.baseUri.length === 0}
         />
       </Panel>
     );
@@ -61,4 +61,5 @@ FreshDeskSettingPanel.propTypes = {
 
 FreshDeskSettingPanel.defaultProps = {
   apiKey: '',
+  baseUri: '',
 };

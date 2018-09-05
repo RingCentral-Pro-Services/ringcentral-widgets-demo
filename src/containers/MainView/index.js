@@ -73,13 +73,13 @@ const TABS = [
     ),
   },
   {
-    icon: SettingsIcon,
-    activeIcon: SettingsHoverIcon,
+    icon: "Tickets",
+    activeIcon: "Tickets",
     label: 'FreshDesk Settings',
     path: '/freshDeskSetting',
     isActive: currentPath => (
-      currentPath.substr(0, 9) === '/freshDeskSetting'
-    ),
+      currentPath.substr(0, 17) === '/freshDeskSetting'
+    )
   }
 ];
 
