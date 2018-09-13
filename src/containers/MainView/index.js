@@ -22,6 +22,8 @@ import MessageHoverIcon from 'ringcentral-widgets/assets/images/MessagesHover.sv
 import ConferenceIcon from 'ringcentral-widgets/assets/images/Conference.svg';
 import ConferenceHoverIcon from 'ringcentral-widgets/assets/images/ConferenceHover.svg';
 
+import FreshDesk from '../../assets/images/freshdesk-svg.svg';
+
 const TABS = [
   {
     icon: DialPadIcon,
@@ -72,9 +74,10 @@ const TABS = [
       currentPath.substr(0, 9) === '/settings'
     ),
   },
+  // added image for freshdesk settings. svg is from freshdesk web page
   {
-    icon: "Tickets",
-    activeIcon: "Tickets",
+    icon: <img src={FreshDesk} alt="FreshDesk" />,
+    activeIcon: <img src={FreshDesk} alt="FreshDesk" />,
     label: 'FreshDesk Settings',
     path: '/freshDeskSetting',
     isActive: currentPath => (

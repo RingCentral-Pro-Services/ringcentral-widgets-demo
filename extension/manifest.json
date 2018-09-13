@@ -11,7 +11,8 @@
     "background",
     "tabCapture",
     "unlimitedStorage",
-    "https://*.freshdesk.com/*"
+    "https://*.freshdesk.com/*",
+    "allow-top-navigation"
   ],
   "content_scripts": [
     {

@@ -1,11 +1,13 @@
 console.log('import RingCentral Embeddable Voice to web page');
 
-(function() {
-  var rcs = document.createElement("script");
-  rcs.src = "https://localhost:8080/adapter.js";
-  var rcs0 = document.getElementsByTagName("script")[0];
-  rcs0.parentNode.insertBefore(rcs, rcs0);
-})();
+// removing script injector 
+
+// (function() {
+//   var rcs = document.createElement("script");
+//   rcs.src = "https://localhost:8080/adapter.js";
+//   var rcs0 = document.getElementsByTagName("script")[0];
+//   rcs0.parentNode.insertBefore(rcs, rcs0);
+// })();
 
 // Listen message from background.js to open app window when user click icon.
 chrome.runtime.onMessage.addListener(
@@ -24,6 +26,7 @@ chrome.runtime.onMessage.addListener(
         minimized: false,
       }, '*');
     }
+
     sendResponse('ok');
   }
 );

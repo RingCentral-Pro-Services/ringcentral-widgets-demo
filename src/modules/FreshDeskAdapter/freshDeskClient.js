@@ -102,8 +102,8 @@ export async function createTicket(key, baseUri, call, me) {
     source: 3, // Phone call source
     type: "Incident", // Default Type.
     tags: ["Phone Call", call.to], // Tags used for searching. Phone Call, and the number they called
-    group_id: 43000093974,
-    responder_id: me.id
+    group_id: 43000093974, // Hard coded group ID provided. NOT FOR PRODUCTION, but a group ID on the RC test freshdesk account. will need to be hardcoded for customer account when moving to their production
+    responder_id: me.id // ensure responder (person who took call) is setup using the ID of the person that answered
   }
 
   let ticketData = await fetch(baseUri + "/api/v2/tickets", {
@@ -120,11 +120,12 @@ export async function createTicket(key, baseUri, call, me) {
   })
 
   console.log(ticketData)
-  return ticketData
+  return ticketData // returns ticket data to the web phone so it can track that ticket was created, and use its ID to update the ticket with call length
 }
 
 export async function updateTicket(key, baseUri, ticketId, call) {
   console.debug("Call data: ", call)
+  // setup duration of call to determine call length, and put into a custom field on the ticket. length becomes a decimal, which is the only option that works with freshdesk for custom fields
   let duration = 0
   let endTime = new Date(call.endedTime)
   let startTime = new Date(call.startTime)
@@ -152,5 +153,6 @@ export async function updateTicket(key, baseUri, ticketId, call) {
 
   console.log(ticketUpdate)
 
+  // let webphone know that ticket was successfully updated
   return ticketUpdate
 }

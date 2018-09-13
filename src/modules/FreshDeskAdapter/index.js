@@ -135,22 +135,8 @@ export default class FreshDeskAdapter extends RcModule {
       };
       this._pendingTickets[call.sessionId] = answeredCall;
       this._me = await freshDeskClient.getMeOnAnswer(this.apiKey, this.baseUri);
-      // try {
-      //   const ticket = await freshDeskClient.getOpenTickets(this.apiKey, this.baseUri, answeredCall);
-      //   if(ticket){
-      //     this._pendingTickets[call.sessionId].ticketId = ticket.id;
-      //   }
-      // } catch (e) {
-      //   console.error(e)
-      // }
       console.log(this._pendingTickets[call.sessionId])
     }
-
-    // // create ticket on Call answered
-    // if (call.telephonyStatus === 'CallConnected' && this._pendingTickets[call.sessionId].ticketId) {
-    //   // open existing ticket window here
-    //   window.open(this.baseUri + "/helpdesk/tickets/" + this._pendingTickets[call.sessionId].ticketId)
-    // }
 
     // create ticket on Call answered
     if (call.telephonyStatus === 'CallConnected'  && !this._pendingTickets[call.sessionId].ticketId) {
@@ -164,7 +150,6 @@ export default class FreshDeskAdapter extends RcModule {
         this._pendingTickets[call.sessionId].ticketId = ticket.id;
         // open ticket window in here
         if(ticket.id){
-          // chrome.tabs.update({url: "/helpdesk/tickets/" + ticket.id})
           window.open(this.baseUri + "/helpdesk/tickets/" + ticket.id)
         }
       } catch (e) {
@@ -173,7 +158,7 @@ export default class FreshDeskAdapter extends RcModule {
     }
 
     // update ticket on Call Ended
-    if (call.telephonyStatus === 'NoCall' && this._pendingTickets[call.sessionId]) {
+    if (call.telephonyStatus === 'NoCall' && this._pendingTickets[call.sessionId].ticketId) {
       console.log("Call just ended from index.js")
       const endedCall = {
         ...call,

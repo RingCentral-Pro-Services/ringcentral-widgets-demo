@@ -35,6 +35,7 @@ export default class FreshDeskSettingPanel extends Component {
     };
   }
 
+  // integration requires the user to specify the URI for their company's freshdesk instance. the user also needs to supply an API key specific to their login account that is used for basic auth for all of their API calls. this is stored in browser, and if it isn't already stored, the user is redirected here before they can use the web phone
   render() {
     return (
       <Panel className={styles.content}>

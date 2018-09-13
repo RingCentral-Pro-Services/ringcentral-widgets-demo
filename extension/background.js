@@ -1,16 +1,8 @@
 
 let newWindow;
+
+// pop small browser window for softphone
 chrome.browserAction.onClicked.addListener(function (tab) {
-  // open float app window when click icon in office page
-  if (tab && tab.url && tab.url.indexOf('freshdesk.com') > -1) {
-    // send message to content.js to to open app window.
-    chrome.tabs.sendMessage(tab.id, { action: 'openAppWindow' }, function(response) {
-      console.log(response);
-    });
-    return;
-  }
-  // open standalong app window when click icon
-  if (!newWindow) {
     chrome.windows.create({
       url: './standalong.html',
       type: 'popup',
@@ -20,11 +12,6 @@ chrome.browserAction.onClicked.addListener(function (tab) {
     }, function (wind) {
       newWindow = wind;
     });
-  } else {
-    chrome.windows.update(newWindow.id, {
-      focused: true,
-    });
-  }
 });
 chrome.windows.onRemoved.addListener(function (id) {
   console.log(id);
