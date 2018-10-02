@@ -27,6 +27,6 @@
     "persistent": true
   },
   "browser_action": {},
-  "content_security_policy": "script-src 'self' https://s3.amazonaws.com/freshdesk-test-webphone; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://localhost:8080; object-src 'self'",
   "manifest_version": 2
 }
